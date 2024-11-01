@@ -1,0 +1,239 @@
+/* Hide Activity in Member List */
+[class^='membersGroup']:has([role=button]),
+[class^='member'] [class^='container']:has([class*='badges']) {
+  display: none;
+}
+
+/* Make Delete/Logout Buttons Red */
+[class^=item_][data-tab-id="DELETE"],
+[class^=item_][data-tab-id="logout"] {
+    color: var(--info-danger-foreground) !important;
+}
+[class^=item_][data-tab-id="DELETE"]:hover,
+[class^=item_][data-tab-id="logout"]:hover {
+    background-color: var(--info-danger-background) !important;
+}
+
+/* Match Badges Border Color with Profile Button Color for Custom Profiles */
+.custom-profile-theme [aria-label="User Badges"] {
+  border-color: var(--profile-gradient-button-color);
+}
+
+/* Match Full Size Profile Box Border Color with Profile Button Color for Custom Profiles */
+.custom-profile-theme [class^=fullSizeOverlayBackground] {
+  border-color: var(--profile-gradient-button-color)!important;
+}
+
+/* Add Panel Profile Box Border Color with Profile Button Color for Custom Profiles */
+[class^=userPanelInner_] :is([class^=overlayBackground_], [class^=activityBiteSizePopout_]) {
+  border: 1px solid var(--profile-gradient-button-color);
+}
+
+/* Match Profile Scroller with Profile Button Color for Custom Profiles */
+.custom-profile-theme [class*=scrollerBase_]::-webkit-scrollbar-thumb {
+  background-color: var(--profile-gradient-button-color);
+}
+
+/* Match Clan Button Color with Profile Button Color for Custom Profiles */
+.custom-profile-theme [class^=chipletContainerInner_] {
+  background: var(--profile-gradient-button-color);
+}
+
+/* Match Show More Roles and View Permissions (Permissions Plugin) Border Color with Profile Button Color for Custom Profiles */
+.custom-profile-theme :is([class^=expandButton_], [class^=collapseButton_], .vc-permviewer-role-button)  {
+  border-color: var(--profile-gradient-button-color);
+}
+
+/* Add Border to Activities and Match with Profile Button Color for Custom Profiles */
+.custom-profile-theme :is([class^=biteSizeOverlayBackground_], [class^=scroller_] [class^=section_] [class*=card_]) {
+  border: 1px solid var(--profile-gradient-button-color)!important;
+}
+
+/* Match Connections Border Color with Profile Button Color for Custom Profiles */
+.custom-profile-theme [class^=connectedAccountContainer_] {
+    border-color: var(--profile-gradient-button-color);
+}
+
+/* Usable Discord on Low Width */
+@media (max-width: 1100px) {
+    [class*="sidebar_"] {
+        width: 200px;
+        .vc-typing-indicator, .vc-channelemojis-emoji, [class*="guildIconV2Container_"] {
+            display: none;
+        }
+        [class*="containerDefault_"] {
+            [role="img"] {
+                display: none;
+            }
+        }
+    }
+    [class*="chat_"] {
+        [class*="membersWrap_"] {
+            display: none;
+        }
+    }
+}
+
+/* Visible Server Banner */
+[class^="container_"]:not([class*="bannerVisible_"]) >
+[class^="animatedContainer_"] {
+  top: 3px;
+}
+[class*="animatedContainer_"] {
+  opacity: 1 !important;
+}
+[class*="headerContent_"] {
+  filter: drop-shadow(0 1px 1px var(--bg-backdrop));
+}
+
+/* Blue Pill */
+[class^="iconVisibility_"]:has([style="color: var(--text-brand);"]) > [class^="unread_"] {
+  background-color: var(--text-brand);
+}
+
+/* Red Pill */
+[class^="iconVisibility_"]:has([class^="mentionsBadge_"]) > [class^="unread_"] {
+  background-color: var(--status-danger);
+}
+
+/* Fixes Staff Tag Before Reply */
+[class^=botTagCompact],
+[class^=repliedTextPreview],
+[class^=repliedTextContentTrailingIcon] {
+    order: 1 !important;
+}
+
+/* Disable Mirrored Camera Preview */
+.media-engine-video[class*=mirror_] { 
+    transform: none;
+}
+
+/* Remove App Launcher */
+[class*=channelAppLauncher_] {
+  display: none;
+}
+
+/* Match Activity Buttons Color with Profile Button Color for Custom Profiles */
+.custom-profile-theme [class^=activityBiteSizePopout_] button,
+.custom-profile-theme [class^=activitySimplifiedProfile_] button {
+  background-color: var(--profile-gradient-button-color)!important;
+}
+
+/* Show Hidden Things/Mod View: Remove Actions like Kick, Ban, and Timeout if Disabled Due to Insufficient Permissions */
+[class^=guildSidebar_] [class^=bottomRow_]:has([class*=bottomRowActionDisabled_]) [class*=bottomRowActionDisabled_] {
+  display: none;
+}
+
+/* Match Status Bubble Color with Profile Primary Color */
+.custom-profile-theme [class^=statusBubble_] {
+  background-color: var(--profile-gradient-primary-color);
+}
+.custom-profile-theme [class^=statusBubbleOuter_]:before {
+  background-color: var(--profile-gradient-primary-color);
+}
+.custom-profile-theme [class^=statusBubbleOuter_]:after {
+  background-color: var(--profile-gradient-primary-color);
+}
+
+/* Put Something in Home Icon */
+[data-list-item-id="guildsnav___home"] {
+    content: url(https://files.catbox.moe/hz8xa0.jpg);
+}
+
+/* Spotify Album Image Turntable */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+#vc-spotify-album-image {
+  border-radius: 50%;
+  animation: spin 10s linear infinite;
+  animation-play-state: paused;
+}
+#vc-spotify-player:has(.vc-spotify-pause) #vc-spotify-album-image {
+  animation-play-state: running;
+}
+
+/* Put the Message Displays at the Top */
+div[id="appearance-tab"] div [class*=children] {
+  /* Move the Display Preview to the Top */
+  div[tabindex="-1"] {
+    order: 0;
+  }
+  /* Move Its Controls Below It */
+  div[class*=marginTop8_]:nth-of-type(3) {
+    order: 1;
+  }
+  /* Nitro Upsells */
+  div[class*=marginTop8_]:nth-of-type(2) {
+    order: 3;
+  }
+
+  /* The Nitro Icon */
+  div[aria-label="Exclusive to Nitro"] svg[class*=nitroWheel] {
+    display: none;
+  }
+
+  /* The "Only with Nitro." Labels */
+  h3[data-text-variant="text-sm/normal"] {
+    display: none;
+  }
+
+  /* Redundant Title, Also Blends in Themes More */
+  h3[aria-label="Color"] {
+    display: none;
+  }
+
+  /* Move Chat Font Scaling, Zoom Level, etc to Where It Should Be */
+  div[class*=marginTop20_] {
+    order: 10;
+  }
+}
+
+/* Make the Theme Menu Slightly More Bearable to Look At */
+div[class^=premiumFeatureBorder] {
+  border: none;
+
+  div[class^=background_] {
+    padding: 0px;
+  }
+  
+  /* Blend in the Nitro Themes with the Rest of the Theme Selector */
+  div[class^=title] {
+    display: none;
+  }
+  div[class^=tryItOutButtons] {
+    display: none;
+  }
+  h3[class^=defaultColor] {
+    display: none;
+  }
+}
+
+/* Useless Friends Button in Profile */
+[class*="biteSize_"] :is([aria-label="Add Friend"], [aria-label="Friends"]) {
+    display: none;
+}
+
+/* Unsimplify Bios */
+[class^="descriptionClamp_"] {
+    display: block!important;
+}
+
+/* Fix Forums */
+[class*=descriptionClamp] {
+  -webkit-line-clamp: 9999999;
+}
+
+[class*=viewFullBio] {
+  display: none;
+}
+
+/* Don't Collapse DM Category */
+[class*=privateChannelsHeaderContainer] [class*=header]:not([class*=pindms]) {
+    pointer-events: none;
+}
